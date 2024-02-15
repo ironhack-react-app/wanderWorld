@@ -4,7 +4,7 @@
 .NavBar {
   display: flex;
   align-items: center;  
-  max-width: 90vw;
+  width: 90vw;
   margin: 0 auto;
   padding: 20px;
   border-bottom: 1px solid #f2f2f2;
