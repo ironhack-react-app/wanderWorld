@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Footer from './Components/Footer';
 import DestinationsList from './Components/DestinationsList';
 import DestinationDetails from './Components/DestinationDetails';
+import EditDestinationPage from './Components/EditDestinationPage';
 
 function App() {
 
@@ -23,8 +24,9 @@ function App() {
     <Routes>
       <Route path="/" element={<DestinationsList destinations={destinations} addDestination={addDestination}/>}/>
       <Route path="/destinations/:destinationId" element={<DestinationDetails />}></Route>
+      <Route path="/destinations/edit/:destinationId" element={ <EditDestinationPage /> } />
     </Routes>
-
+    
     </>
   )
 }

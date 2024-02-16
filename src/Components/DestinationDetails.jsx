@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const DestinationDetails = () => {
 
     const API_URL = "https://react-app-json-server-backend.adaptable.app"
 
     const { destinationId } = useParams()
-
+    const navigate = useNavigate()
     const [destination, setDestination] = useState(null)
 
     useEffect(() => {
@@ -19,6 +19,16 @@ const DestinationDetails = () => {
                 console.log(e)
             })
     }, [])
+
+    const deleteProject = () => {
+        axios.delete(API_URL + '/destinations/' + destinationId)
+            .then((response) => {
+                navigate("/")
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }
 
     return (
         <div className="DestinationDetails">
@@ -35,23 +45,23 @@ const DestinationDetails = () => {
                         </div>
                         <div className="info-data">
                             <div className="statistics">
-                                <h4>Warmest Month</h4>
-                                <div><p>🔥 test</p></div>
-                                <h4>Rainiest Month</h4>
-                                <div><p>🌧️ test</p></div>
-                                <h4>Cheapest Month</h4>
-                                <div><p>💸 test</p></div>
-                                <h4>Best Season to go:</h4>
-                                <div><p>😊 test</p></div>
+                                <h5>Warmest Month</h5>
+                                <div><p>🔥 {destination.warmestmonth}</p></div>
+                                <h5>Rainiest Month</h5>
+                                <div><p>🌧️ {destination.rainiestmonth}</p></div>
+                                <h5>Cheapest Month</h5>
+                                <div><p>💸 {destination.cheapestmonth}</p></div>
+                                <h5>Best Season to go:</h5>
+                                <div><p>😊 {destination.bestseason}</p></div>
                             </div>
                             <div className="price">
-                                <h4>Price 7-Days</h4>
-                                <h1>250€</h1>
+                                <h5>Price {destination.days} Days</h5>
+                                <h1>{destination.totalCost}€</h1>
                             </div>
                         </div>
                         <div className="buttons-wrap">
-                        <button>Edit Destination</button>
-                        <button>Delete Destination</button>
+                        <Link to={`/destinations/edit/${destinationId}`}><button>Edit Destination</button></Link>
+                        <button onClick={deleteProject}>Delete Destination</button>
                         </div>
                     </div>
                 </div>)
