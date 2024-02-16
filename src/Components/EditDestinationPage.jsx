@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const EditDestinationPage = () => {
 
-    const API_URL = "https://react-app-json-server-backend.adaptable.app"
+    const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
 
     const [destination, setDestination] = useState("")
     const [description, setDescription] = useState("")

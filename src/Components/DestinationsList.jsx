@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddDestination from "./AddDestination";
-//import { FaTrashCan } from "react-icons/fa6";
 
-const DestinationsList = ({addDestination}) => {
-  const API_URL = "https://react-app-json-server-backend.adaptable.app";
+const DestinationsList = () => {
+    
+  const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
 
-  const [destinations, setDestinations] = useState(null);
+  const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
     axios
@@ -20,13 +19,7 @@ const DestinationsList = ({addDestination}) => {
       });
   }, []);
 
-  /*const deleteProduct = (destinationId) => {
-    const newList = destinations.filter((destinationObj) => {
-      return destinationObj.id !== destinationId;
-    });
-    setDestinations(newList);
-  };
-*/
+ 
   return (
     <>
     <div className="DestinationsList">
@@ -48,21 +41,8 @@ const DestinationsList = ({addDestination}) => {
         })
       )}
     </div>
-    <AddDestination addDestination={addDestination}>Add Destination</AddDestination>
     </>
   );
 };
 
 export default DestinationsList;
-/*
-                <div className="btn-container">
-                  <button
-                    className="trash"
-                    onClick={() => {
-                      deleteProduct(obj.id);
-                    }}
-                  >
-                    <FaTrashCan />
-                  </button>
-                </div>
-                */
