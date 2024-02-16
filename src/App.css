@@ -7,13 +7,45 @@
   }
 
   .item-img{
-    width: 250px;
-    height: 250px;
+    width: 500px;
+    height: 350px;
     margin: 0 auto;
   }
 
-  .destination-card{
+  .destination-card a{
     text-decoration: none;
+  }
+  .destination-card{
+    flex-basis: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: var(--light-grey);
+    box-shadow: #3c40434d 0 1px 2px,#3c404326 0 1px 3px 1px;
+    max-height: 520px;
+    text-decoration: none;
+   
+  }
+
+  .destination-title {
+    color:rgb(34, 109, 65);
+    font-weight: 400;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align:center;
+    text-decoration: none;
+    
+  }
+
+  .destination-description {
+    color:rgb(39, 91, 61);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align:center;
+    text-decoration: none;
+  }
+
+  /*
+   text-decoration: none;
     border: 1px rgb(35, 183, 97);
     border-radius: 15px;
     padding: 1rem;
@@ -22,11 +54,4 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow:  0px 15px 15px rgb(227, 244, 234);
-    text-decoration:solid; 
-   
-  }
-
-  .destination-title , 
-  .destination-description{
-    color:rgb(35, 183, 97);
-  }
+    text-decoration:solid; */
