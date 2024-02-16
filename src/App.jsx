@@ -3,6 +3,8 @@ import './App.css'
 import NavBar from './Components/NavBar'
 import { Link } from "react-router-dom";
 import Footer from './Components/Footer';
+import DestinationsList from './Components/DestinationsList';
+import DestinationDetails from './Components/DestinationDetails';
 
 function App() {
 
@@ -10,8 +12,12 @@ function App() {
   return (
     <>
     <NavBar />
-     <h1>Test</h1>
- 
+    
+    <Routes>
+      <Route path="/" element={<DestinationsList/>}/>
+      <Route path="/destinations/:destinationId" element={<DestinationDetails />}></Route>
+    </Routes>
+
     </>
   )
 }
