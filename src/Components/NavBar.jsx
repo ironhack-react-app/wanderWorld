@@ -6,7 +6,7 @@ const NavBar = () => {
          <NavLink to="/"><h1>WanderWorld</h1> </NavLink>
             <div className="links">
                 <NavLink to="/">Home</NavLink>
-                <NavLink to="/destinations/create">Add Destination</NavLink>
+                <NavLink to="/destinations/create">Create Destination</NavLink>
                 <NavLink to="/destinations/favourites">Favourites</NavLink>
             </div>
       </nav> 

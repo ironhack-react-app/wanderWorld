@@ -22,10 +22,13 @@ const DestinationsList = () => {
  
   return (
     <>
+          <h2 className="title">Plan your dream vacation with WanderWorld!</h2> <br />
+
     <div className="DestinationsList">
       {destinations === null ? (
         <p>Loading...</p>
       ) : (
+      
         destinations.map((obj) => {
           return (
             <div className="destination-card" key={obj.id}>
@@ -39,6 +42,7 @@ const DestinationsList = () => {
             </div>
           );
         })
+       
       )}
     </div>
     </>

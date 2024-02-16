@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 
 const DestinationDetails = () => {
 
-    const API_URL = "https://react-app-json-server-backend.adaptable.app"
+    const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
 
     const { destinationId } = useParams()
     const navigate = useNavigate()
