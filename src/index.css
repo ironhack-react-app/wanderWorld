@@ -1,11 +1,13 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+/* NAVBAR */
+
 .NavBar {
   display: flex;
   align-items: center;  
   width: 90vw;
-  margin: 0 auto;
+  margin: 0 auto 65px auto;
   padding: 20px;
   border-bottom: 1px solid #f2f2f2;
 }
@@ -23,4 +25,24 @@
 }
 .NavBar a:hover {
   color: #3dcfb0;
+}
+
+/* DESTINATION DETAILS */
+
+.DestinationDetails {
+  padding: 0 5vw;
+}
+.destination {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+.img-card {
+  flex-basis: 50%;
+}
+.img-card img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50px;
+  box-shadow: #3c40434d 0 2px 2px, #3c404326 0 1px 3px 1px;
 }
