@@ -24,11 +24,17 @@ const DestinationsList = () => {
                 ? <p>Loading...</p>
                 : destinations.map((obj) => {
                     return (
-                        <Link to={`/destinations/${obj.id}`}><div className="destination-card" key={obj.id}>
-                            <img src={obj.image}/>
-                            <p>{obj.destination}</p>
+                        <div className="destination-card" key={obj.id}>
+                        <Link to={`/destinations/${obj.id}`}>
+                           
+                            <h2 className="destination-title">{obj.destination}</h2>
+                           
+                            <img className="item-img" src={obj.image}/>
+                            <p className="destination-description">{obj.description}</p>
                             
-                        </div></Link>
+                            
+                       </Link>
+                       </div>
                     )
                 })
             }
