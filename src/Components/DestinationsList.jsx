@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AddDestination from "./AddDestination";
 //import { FaTrashCan } from "react-icons/fa6";
 
-const DestinationsList = () => {
+const DestinationsList = ({addDestination}) => {
   const API_URL = "https://react-app-json-server-backend.adaptable.app";
 
   const [destinations, setDestinations] = useState(null);
@@ -27,6 +28,7 @@ const DestinationsList = () => {
   };
 */
   return (
+    <>
     <div className="DestinationsList">
       {destinations === null ? (
         <p>Loading...</p>
@@ -46,6 +48,8 @@ const DestinationsList = () => {
         })
       )}
     </div>
+    <AddDestination addDestination={addDestination}>Add Destination</AddDestination>
+    </>
   );
 };
 
