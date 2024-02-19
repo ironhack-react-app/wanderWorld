@@ -1,4 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 import './App.css'
 import NavBar from './Components/NavBar'
 import Footer from './Components/Footer';
@@ -12,14 +15,38 @@ import LeafletMap from './Components/LeafletMap';
 
 
 function App() {
+  const [destinations, setDestinations] = useState([]);
+  const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
+
+  useEffect(() => {
+    
+    axios
+      .get(API_URL + "/destinations")
+      .then((response) => {
+        setDestinations(response.data);
+        
+      })
+      .catch((e) => {
+        console.log(e);
+      });
  
- 
+  }, []);
+
+  const handleSearch = (searchKey) => {
+  
+      console.log(searchKey);
+      let searchResult = destinations.filter((dest) => dest.destination.toLowerCase().includes(searchKey.toLowerCase()));
+      console.log(searchResult);
+      setDestinations(searchResult);
+  
+  }
+
   return (
     <>
-    <NavBar />
+    <NavBar handleSearch={handleSearch}/>
     
     <Routes>
-      <Route path="/" element={<DestinationsList/>}/>
+      <Route path="/" element={<DestinationsList destinations={destinations} />}/>
       <Route path="/destinations" element={<DestinationsList/>}/>
       <Route path="/destinations/:destinationId" element={<DestinationDetails />}></Route>
       <Route path="/destinations/edit/:destinationId" element={ <EditDestinationPage /> } />

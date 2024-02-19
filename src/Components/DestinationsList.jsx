@@ -1,37 +1,15 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import LeafletMap from "./LeafletMap";
 
  
-const DestinationsList = () => {
-  const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
+const DestinationsList = ({destinations}) => {
   let newList = JSON.parse(localStorage.getItem("favorites"));
   
-  const [destinations, setDestinations] = useState([]);
   const [favorites, setFavorites] = useState(newList!=null ? newList : [] );
-  const [isFavBtnClicked, setIsFavBtnClicked] = useState(false);
-  
-
-  useEffect(() => {
-    
-    axios
-      .get(API_URL + "/destinations")
-      .then((response) => {
-        setDestinations(response.data);
-        
-      })
-      .catch((e) => {
-        console.log(e);
-      });
- 
-  }, []);
-
- 
   
 
   const addToFavorites = (destination) => {
-    setIsFavBtnClicked(true);
     if (favorites.findIndex((favorite) => favorite.id === destination.id) == -1) {
        console.log("adding...");
 

@@ -1,5 +1,6 @@
  
 import {MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Link } from 'react-router-dom';
 
 const LeafletMap = ({destinations}) => {
 
@@ -22,7 +23,9 @@ const LeafletMap = ({destinations}) => {
             <div key={obj.id}>
               <Marker position={obj.coordination}>
                 <Popup>
-                  {obj.destination}
+                  <Link to={`/destinations/${obj.id}`}>
+                    {obj.destination}
+                  </Link>
                 </Popup>
               </Marker>
               </div>
