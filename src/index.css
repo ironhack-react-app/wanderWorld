@@ -58,19 +58,38 @@
   font-size: 3em;
   margin: 0;
 }
-.info-data {
+.info-data-weather {
   display: flex;
+  justify-content: space-between;
   margin-top: 20px;
   background-color: #cfebe5;
   border-radius: 10px;
   padding: 20px 20px 0 20px;
 }
 .statistics {
-  flex-basis: 60%;
+  flex-basis: 70%;
+}
+.weather-price {
+  flex-basis: 30%;
+  text-align: right;
+  position: relative;
+}
+.weather {
+  display: flex;
+  justify-content: space-between;
+}
+.weather h1 {
+  font-size: 50px;
+}
+.weather img {
+  height: 70px;
+  padding-left: 10px;
+  padding-bottom: 3px;
 }
 .price {
-  flex-basis: 40%;
-  text-align: right;
+ position: absolute;
+ bottom: 0;
+ right: 0;
 }
 .price h1 {
  font-size: 50px;
