@@ -1,8 +1,9 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  padding-top: 200px;
 }
 /* NAVBAR */
-
+/* 
 .NavBar {
   display: flex;
   align-items: center;  
@@ -25,7 +26,7 @@
 }
 .NavBar a:hover {
   color: #3dcfb0;
-}
+} */
 
 
 /* DESTINATION DETAILS */
