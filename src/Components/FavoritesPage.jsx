@@ -4,33 +4,30 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const FavoritesPage = () => {
-  const [destination, setDestination] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const [warmestmonth, setWarmestmonth] = useState("");
-  const [rainiestmonth, setRainiestmonth] = useState("");
-  const [cheapestmonth, setCheapestmonth] = useState("");
-  const [bestseason, setBestseason] = useState("");
-  const [totalCost, setTotalCost] = useState("");
 
-  const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
 
-  const navigate = useNavigate();
+  let favList = JSON.parse(localStorage.getItem("favorites"));
+  const [favorites, setFavorites] = useState(favList!=null ? favList : [] );
 
-  const [favorites, setFavorites] = useState([]);
 
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites"));
-    if (favorites) {
-      setFavorites(favorites);
-    }
-  }, []);
+
+  const removeFromFavorites = (destination) => {
+     if (favorites.findIndex((favorite) => favorite.id === destination.id) > -1) {
+        console.log("removing...");
+        let newfavList = favorites.filter(
+          (favorite) => favorite.id != destination.id
+        );
+        setFavorites(newfavList);
+        localStorage.setItem("favorites", JSON.stringify(newfavList));
+    }  
+  };
+   
 
   return (
     <>
       <div className="DestinationsList">
-        {favorites === null ? (
-          <p>Loading...</p>
+        {favorites.length === 0 ? (
+          <h2> <i> Favorites List is empty </i></h2>
         ) : (
           favorites.map((obj) => {
             return (
@@ -55,7 +52,7 @@ const FavoritesPage = () => {
                   <p className="destination-description">{obj.description} </p>
                   <button
                     onClick={() => {
-                      addToFavorites(obj);
+                      removeFromFavorites(obj);
                     }}
                   >
                     <svg
