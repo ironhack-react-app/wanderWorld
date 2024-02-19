@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import BrokenClouds from "../WeatherIcons/Broken_clouds.png"
+
+
+const api = {
+    key: '502de217ab725b6fafb5151d8aa4d874',
+    base: 'https://api.openweathermap.org/data/2.5/'
+};
 
 const DestinationDetails = () => {
 
@@ -30,6 +37,16 @@ const DestinationDetails = () => {
             })
     }
 
+    const [weather, setWeather] = useState({})
+    useEffect(() => {
+        fetch(`${api.base}weather?q=Berlin&units=metric&APPID=${api.key}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setWeather(data)
+            })
+    }, [])
+
     return (
         <div className="DestinationDetails">
             {destination === null
@@ -43,7 +60,7 @@ const DestinationDetails = () => {
                             <h1>{destination.destination}</h1>
                             <p><i>{destination.description}</i></p>
                         </div>
-                        <div className="info-data">
+                        <div className="info-data-weather">
                             <div className="statistics">
                                 <h5>Warmest Month</h5>
                                 <div><p>🔥 {destination.warmestmonth}</p></div>
@@ -54,14 +71,27 @@ const DestinationDetails = () => {
                                 <h5>Best Season to go:</h5>
                                 <div><p>😊 {destination.bestseason}</p></div>
                             </div>
-                            <div className="price">
-                                <h5>Price {destination.days} Days</h5>
-                                <h1>{destination.totalCost}€</h1>
+                            <div className="weather-price">
+                               <h5>Current Weather Forecast</h5>
+                                {typeof weather.main !== "undefined" ? (
+                                    <div className="weather">
+                                       {weather.weather[0].description === "broken clouds" 
+                                       && <img src={BrokenClouds}/>}
+                                        <h1>{Math.round(weather.main.temp)} ºC</h1>
+                                       
+                                    </div>
+                                ) : ('')}
+
+                                 <div className="price">
+                                    <h5>Price {destination.days} Days</h5>
+                                    <h1>{destination.totalCost}€</h1>
+                                </div>
                             </div>
+
                         </div>
                         <div className="buttons-wrap">
-                        <Link to={`/destinations/edit/${destinationId}`}><button>Edit Destination</button></Link>
-                        <button onClick={deleteProject}>Delete Destination</button>
+                            <Link to={`/destinations/edit/${destinationId}`}><button>Edit Destination</button></Link>
+                            <button onClick={deleteProject}>Delete Destination</button>
                         </div>
                     </div>
                 </div>)
