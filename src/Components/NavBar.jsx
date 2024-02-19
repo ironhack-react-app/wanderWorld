@@ -9,7 +9,7 @@ const NavBar = () => {
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div className="offcanvas-header">
             <h5 className="offcanvas-title" id="offcanvasNavbarLabel">WanderWorld</h5>
             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -23,7 +23,7 @@ const NavBar = () => {
                 <NavLink to="/destinations/create" className="nav-link" href="#">Create Destination</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/favourites" className="nav-link" href="#">Favourites</NavLink>
+                <NavLink to="/destinations/favorites" className="nav-link" href="#">Favorites</NavLink>
               </li>
             </ul>
           </div>
@@ -35,7 +35,7 @@ const NavBar = () => {
 
 export default NavBar;
 
-
+/*  <NavLink to="/destinations/favorites">Favorites</NavLink> */
 {/* <nav classNameName="NavBar">
         <h1>WanderWorld</h1>
             <div classNameName="links">
