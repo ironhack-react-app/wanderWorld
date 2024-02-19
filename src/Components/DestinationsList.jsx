@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LeafletMap from "./LeafletMap";
 
+ 
 const DestinationsList = () => {
   const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
   let newList = JSON.parse(localStorage.getItem("favorites"));
@@ -9,7 +11,7 @@ const DestinationsList = () => {
   const [destinations, setDestinations] = useState([]);
   const [favorites, setFavorites] = useState(newList!=null ? newList : [] );
   const [isFavBtnClicked, setIsFavBtnClicked] = useState(false);
-
+  
 
   useEffect(() => {
     
@@ -101,11 +103,19 @@ const DestinationsList = () => {
                     )}
                   </button>
                 </div>
+                
               </div>
             );
           })
         )}
+          
+
       </div>
+      {destinations === null ? (
+          <p>Map is loading...</p>
+        ) : (
+      <LeafletMap destinations={destinations} />
+        )}
     </>
   );
 };

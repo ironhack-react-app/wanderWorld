@@ -6,6 +6,8 @@
     margin: 60px;
   }
 
+  
+
   .title{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align:center;
@@ -81,3 +83,12 @@
     gap: 50px;
   }
   
+  .leaflet-container {
+    height: 600px;
+    width: 100%;
+  }
+  
+  .leaflet-div-icon {
+    background: transparent;
+    border: none;
+  }

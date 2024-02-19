@@ -7,6 +7,7 @@ import DestinationDetails from './Components/DestinationDetails';
 import EditDestinationPage from './Components/EditDestinationPage';
 import AddDestinationPage from './Components/AddDestinationPage';
 import FavoritesPage from './Components/FavoritesPage';
+import LeafletMap from './Components/LeafletMap';
 
 
 
