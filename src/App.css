@@ -38,7 +38,7 @@
   }
 
   .destination-title {
-    color:rgb(34, 109, 65);
+    color:rgb(39, 91, 61);
     font-weight: 400;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align:center;
@@ -53,4 +53,18 @@
     text-decoration: none;
   }
 
+  .location-tag, .like-tag {
+    width: 15px;
+    height: 38px;
+
+   
+  }
+
+  .destination-title-container{
+    display:flex;
+    justify-content:center;
+    padding-top: 10px;
+    gap: 7px;
+    
+  }
   
