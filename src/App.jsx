@@ -6,6 +6,7 @@ import DestinationsList from './Components/DestinationsList';
 import DestinationDetails from './Components/DestinationDetails';
 import EditDestinationPage from './Components/EditDestinationPage';
 import AddDestinationPage from './Components/AddDestinationPage';
+import FavoritesPage from './Components/FavoritesPage';
 
 
 
@@ -22,6 +23,7 @@ function App() {
       <Route path="/destinations/:destinationId" element={<DestinationDetails />}></Route>
       <Route path="/destinations/edit/:destinationId" element={ <EditDestinationPage /> } />
       <Route path="/destinations/create" element={ <AddDestinationPage /> } />
+      <Route path="/destinations/favorites" element={ <FavoritesPage /> } />
 
     </Routes>
     <Footer />

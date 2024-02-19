@@ -1,62 +1,41 @@
+import { useState,useEffect } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const DestinationsList = () => {
+const FavoritesPage = () => {
+  const [destination, setDestination] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+  const [warmestmonth, setWarmestmonth] = useState("");
+  const [rainiestmonth, setRainiestmonth] = useState("");
+  const [cheapestmonth, setCheapestmonth] = useState("");
+  const [bestseason, setBestseason] = useState("");
+  const [totalCost, setTotalCost] = useState("");
+
   const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
 
-  const [destinations, setDestinations] = useState([]);
+  const navigate = useNavigate();
+
+
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-
-    axios
-      .get(API_URL + "/destinations")
-      .then((response) => {
-        setDestinations(response.data);
-        const favorites = JSON.parse(localStorage.getItem('favorites'));
-        if (favorites) {
-        setFavorites(favorites);
-        }
-
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-
-      
-
-  }, [favorites]);
-
-  const addToFavorites  = (destination) => {
-    if(favorites.findIndex(favorite => favorite.id ===destination.id) == -1){
-        favorites.push(destination);
-        setFavorites(favorites); 
-        console.log("adding...");
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-
-     }else {
-        console.log("removing...");
-        let newfavList = favorites.filter(favorite => favorite.id != destination.id);
-        console.log(newfavList); 
-        setFavorites(newfavList); 
-        localStorage.setItem('favorites', JSON.stringify(newfavList));
-
-     } 
+    const favorites = JSON.parse(localStorage.getItem('favorites'));
+    if (favorites) {
+      setFavorites(favorites);
+    }
+  }, []);
   
-  };
-
-
 
   return (
     <>
-      <h2 className="title">Plan your dream vacation with WanderWorld!</h2>{" "}
-      <br />
-      <div className="DestinationsList">
-        {destinations === null ? (
+    
+    <div className="DestinationsList">
+        {favorites === null ? (
           <p>Loading...</p>
         ) : (
-          destinations.map((obj) => {
+          favorites.map((obj) => {
             return (
               <div className="destination-card" key={obj.id}>
                 <div>
@@ -89,8 +68,9 @@ const DestinationsList = () => {
           })
         )}
       </div>
+    
     </>
   );
 };
 
-export default DestinationsList;
+export default FavoritesPage;
