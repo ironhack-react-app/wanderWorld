@@ -5,6 +5,8 @@ import "./NavBar.css";
 
 const NavBar = ({ handleSearch }) => {
   const [searchKey, setSearchKey] = useState("");
+  
+  const [query, setQuery] = useState("");
 
   const handleChange = (event) => {
     setSearchKey(event.target.value);
