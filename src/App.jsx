@@ -16,7 +16,6 @@ import LeafletMap from './Components/LeafletMap';
 
 function App() {
   const [destinations, setDestinations] = useState([]);
-
   const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
   const [newDestList, setNewDestList] = useState([])
 
@@ -35,16 +34,29 @@ function App() {
  
   }, []);
 
-
-  
   const handleSearch = (searchKey) => {
   
-    console.log(searchKey);
-    let searchResult = destinations.filter((dest) => dest.destination.toLowerCase().includes(searchKey.toLowerCase()));
-    console.log(searchResult);
-    setDestinations(searchResult);
+      console.log(searchKey);
+      let searchResult = destinations.filter((dest) => dest.destination.toLowerCase().includes(searchKey.toLowerCase()));
+      console.log(searchResult);
+      setDestinations(searchResult);
+  }
 
-}
+
+  const filterDestinations = (event) => {
+    console.log(event.target.value)
+   
+    const continent = event.target.value;
+
+    if (continent === "all") {
+      setNewDestList(destinations)
+      console.log(destinations)
+    } else {      
+      const filtered = destinations.filter(dest => dest.continent === continent)
+      setNewDestList(filtered);
+      console.log(filtered)
+    }
+  }
 
   return (
     <>
