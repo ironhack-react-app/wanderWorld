@@ -1,17 +1,20 @@
 import { useState } from "react";
 
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 
 const NavBar = ({ handleSearch }) => {
-  const [searchKey, setSearchKey] = useState("");
-  
+   
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
-    setSearchKey(event.target.value);
-    handleSearch(event.target.value);
+     handleSearch(event.target.value);
   };
+
+  const routeToHomePage = () => {
+    navigate(0);
+  }
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
@@ -52,14 +55,15 @@ const NavBar = ({ handleSearch }) => {
                 <input type="text" onChange={handleChange} />
               </li>
               <li className="nav-item">
-                <NavLink
+                <Link
                   to="/"
                   className="nav-link"
                   aria-current="page"
-                  href="#"
+              
+                  onClick={() => {window.location.href="/"}}
                 >
                   Home
-                </NavLink>
+                </Link>
               </li>
               <li className="nav-item">
                 <NavLink

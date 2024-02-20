@@ -33,7 +33,8 @@ const AddDestinationPage = () => {
     axios
       .post(`${API_URL}/destinations`, newDestionation)
       .then((res) => {
-        navigate(`/destinations`);
+         
+         window.location.href="/";
       })
       .catch((e) => {
         console.log(e);
