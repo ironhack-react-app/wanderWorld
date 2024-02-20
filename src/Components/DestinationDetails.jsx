@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactAnimatedWeather from 'react-animated-weather'
 
 const api = {
-    key: '502de217ab725b6fafb5151d8aa4d874',
+    key: import.meta.env.VITE_WEATHER_KEY,
     base: 'https://api.openweathermap.org/data/2.5/'
 };
 
@@ -30,7 +30,7 @@ const DestinationDetails = () => {
 
     useEffect(() => {
         if (destination !== null) {
-            getWeather(destination.destination);
+            getWeather();
         }
     }, [destination])
 
@@ -57,27 +57,27 @@ const DestinationDetails = () => {
 
     const brokenClouds = {
         icon: 'PARTLY_CLOUDY_DAY',
-        size: 100,
+        size: 80,
         animate: true
     };
     const clearSky = {
         icon: 'CLEAR_DAY',
-        size: 100,
+        size: 80,
         animate: true
     }
     const scatteredClouds = {
         icon: 'CLOUDY',
-        size: 100,
+        size: 80,
         animate: true
     }
     const mist = {
         icon: 'FOG',
-        size: 100,
+        size: 80,
         animate: true
     }
     const lightRain = {
         icon: 'RAIN',
-        size: 100,
+        size: 80,
         animate: true
     }
 
@@ -111,6 +111,11 @@ const DestinationDetails = () => {
                                     ? <p>Loading...</p>
                                     : (<div className="weather">
                                         {weather.weather[0].description === "broken clouds"
+                                            && <ReactAnimatedWeather
+                                                icon={brokenClouds.icon}
+                                                size={brokenClouds.size}
+                                                animate={brokenClouds.animate} />}
+                                        {weather.weather[0].description === "overcast clouds"
                                             && <ReactAnimatedWeather
                                                 icon={brokenClouds.icon}
                                                 size={brokenClouds.size}

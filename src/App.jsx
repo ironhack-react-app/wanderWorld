@@ -17,6 +17,7 @@ import LeafletMap from './Components/LeafletMap';
 function App() {
   const [destinations, setDestinations] = useState([]);
   const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
+  const [newDestList, setNewDestList] = useState([])
 
   useEffect(() => {
     
@@ -24,7 +25,8 @@ function App() {
       .get(API_URL + "/destinations")
       .then((response) => {
         setDestinations(response.data);
-        
+        setNewDestList(response.data)
+        console.log(response.data)
       })
       .catch((e) => {
         console.log(e);
@@ -38,7 +40,22 @@ function App() {
       let searchResult = destinations.filter((dest) => dest.destination.toLowerCase().includes(searchKey.toLowerCase()));
       console.log(searchResult);
       setDestinations(searchResult);
-  
+  }
+
+
+  const filterDestinations = (event) => {
+    console.log(event.target.value)
+   
+    const continent = event.target.value;
+
+    if (continent === "all") {
+      setNewDestList(destinations)
+      console.log(destinations)
+    } else {      
+      const filtered = destinations.filter(dest => dest.continent === continent)
+      setNewDestList(filtered);
+      console.log(filtered)
+    }
   }
 
   return (
@@ -46,8 +63,8 @@ function App() {
     <NavBar handleSearch={handleSearch}/>
     
     <Routes>
-      <Route path="/" element={<DestinationsList destinations={destinations} />}/>
-      <Route path="/destinations" element={<DestinationsList/>}/>
+      <Route path="/" element={<DestinationsList destinations={destinations} filterDestinations={filterDestinations} newDestList={newDestList}/>}/>
+      {/* <Route path="/destinations" element={<DestinationsList  filterDestinations={filterDestinations} newDestList={newDestList}/>}/> */}
       <Route path="/destinations/:destinationId" element={<DestinationDetails />}></Route>
       <Route path="/destinations/edit/:destinationId" element={ <EditDestinationPage /> } />
       <Route path="/destinations/create" element={ <AddDestinationPage /> } />
