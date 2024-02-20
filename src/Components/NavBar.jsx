@@ -1,20 +1,12 @@
-import { useState } from "react";
 
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
 
 const NavBar = ({ handleSearch }) => {
-   
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-
+ 
   const handleChange = (event) => {
      handleSearch(event.target.value);
   };
-
-  const routeToHomePage = () => {
-    navigate(0);
-  }
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
