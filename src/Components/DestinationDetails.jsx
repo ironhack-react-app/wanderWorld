@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import BrokenClouds from "../WeatherIcons/Broken_clouds.png"
-
+import ReactAnimatedWeather from 'react-animated-weather'
 
 const api = {
     key: '502de217ab725b6fafb5151d8aa4d874',
@@ -16,6 +15,8 @@ const DestinationDetails = () => {
     const { destinationId } = useParams()
     const navigate = useNavigate()
     const [destination, setDestination] = useState(null)
+    const [weather, setWeather] = useState(null)
+
 
     useEffect(() => {
         axios.get(API_URL + "/destinations/" + destinationId)
@@ -25,7 +26,24 @@ const DestinationDetails = () => {
             .catch((e) => {
                 console.log(e)
             })
-    }, [])
+    }, [destinationId])
+
+    useEffect(() => {
+        if (destination !== null) {
+            getWeather(destination.destination);
+        }
+    }, [destination])
+
+    const getWeather = () => {
+        axios.get(`${api.base}weather?q=${destination.destination}&units=metric&APPID=${api.key}`)
+            .then((response) => {
+                setWeather(response.data)
+                console.log(response.data)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }
 
     const deleteProject = () => {
         axios.delete(API_URL + '/destinations/' + destinationId)
@@ -37,15 +55,31 @@ const DestinationDetails = () => {
             })
     }
 
-    const [weather, setWeather] = useState({})
-    useEffect(() => {
-        fetch(`${api.base}weather?q=Berlin&units=metric&APPID=${api.key}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setWeather(data)
-            })
-    }, [])
+    const brokenClouds = {
+        icon: 'PARTLY_CLOUDY_DAY',
+        size: 100,
+        animate: true
+    };
+    const clearSky = {
+        icon: 'CLEAR_DAY',
+        size: 100,
+        animate: true
+    }
+    const scatteredClouds = {
+        icon: 'CLOUDY',
+        size: 100,
+        animate: true
+    }
+    const mist = {
+        icon: 'FOG',
+        size: 100,
+        animate: true
+    }
+    const lightRain = {
+        icon: 'RAIN',
+        size: 100,
+        animate: true
+    }
 
     return (
         <div className="DestinationDetails">
@@ -72,17 +106,45 @@ const DestinationDetails = () => {
                                 <div><p>😊 {destination.bestseason}</p></div>
                             </div>
                             <div className="weather-price">
-                               <h5>Current Weather Forecast</h5>
-                                {typeof weather.main !== "undefined" ? (
-                                    <div className="weather">
-                                       {weather.weather[0].description === "broken clouds" 
-                                       && <img src={BrokenClouds}/>}
+                                <h5>Current Weather Forecast</h5>
+                                {weather === null
+                                    ? <p>Loading...</p>
+                                    : (<div className="weather">
+                                        {weather.weather[0].description === "broken clouds"
+                                            && <ReactAnimatedWeather
+                                                icon={brokenClouds.icon}
+                                                size={brokenClouds.size}
+                                                animate={brokenClouds.animate} />}
+                                        {weather.weather[0].description === "few clouds"
+                                            && <ReactAnimatedWeather
+                                                icon={brokenClouds.icon}
+                                                size={brokenClouds.size}
+                                                animate={brokenClouds.animate} />}
+                                        {weather.weather[0].description === "clear sky"
+                                            && <ReactAnimatedWeather
+                                                icon={clearSky.icon}
+                                                size={clearSky.size}
+                                                animate={clearSky.animate} />}
+                                        {weather.weather[0].description === "scattered clouds"
+                                            && <ReactAnimatedWeather
+                                                icon={scatteredClouds.icon}
+                                                size={scatteredClouds.size}
+                                                animate={scatteredClouds.animate} />}
+                                        {weather.weather[0].description === "mist"
+                                            && <ReactAnimatedWeather
+                                                icon={mist.icon}
+                                                size={mist.size}
+                                                animate={mist.animate} />}
+                                        {weather.weather[0].description === "light rain"
+                                            && <ReactAnimatedWeather
+                                                icon={lightRain.icon}
+                                                size={lightRain.size}
+                                                animate={lightRain.animate} />}
                                         <h1>{Math.round(weather.main.temp)} ºC</h1>
-                                       
                                     </div>
-                                ) : ('')}
+                                    )}
 
-                                 <div className="price">
+                                <div className="price">
                                     <h5>Price {destination.days} Days</h5>
                                     <h1>{destination.totalCost}€</h1>
                                 </div>
@@ -101,3 +163,4 @@ const DestinationDetails = () => {
 }
 
 export default DestinationDetails;
+

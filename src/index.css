@@ -81,11 +81,7 @@
 .weather h1 {
   font-size: 50px;
 }
-.weather img {
-  height: 70px;
-  padding-left: 10px;
-  padding-bottom: 3px;
-}
+
 .price {
  position: absolute;
  bottom: 0;
