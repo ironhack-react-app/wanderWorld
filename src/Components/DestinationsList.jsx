@@ -33,10 +33,9 @@ const DestinationsList = ({ destinations, filterDestinations, newDestList }) => 
     <>
       <h2 className="title">Plan your dream vacation with WanderWorld!</h2>
       <br />
-
+      <div className="filter">
       <h4>Filter</h4>
-
-      <select className="filter" onChange={filterDestinations}>
+      <select className="continents" onChange={filterDestinations}>
         <option value="DEFAULT" >Select Continent/Country</option>
         <option value="all" >All destinations</option>
         <option value="North America">North America</option>
@@ -46,7 +45,7 @@ const DestinationsList = ({ destinations, filterDestinations, newDestList }) => 
         <option value="Asia">Asia</option>
         <option value="Australia">Australia</option>
       </select>
-
+      </div>
       <div className="DestinationsList">
         {!newDestList ? (
           <p>Loading...</p>
