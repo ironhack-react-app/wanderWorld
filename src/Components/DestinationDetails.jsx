@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useDebugValue } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import ReactAnimatedWeather from 'react-animated-weather'
@@ -88,6 +88,15 @@ const DestinationDetails = () => {
         animate: true
     }
 
+  
+    const timezone = "America/New_York"
+    const [time, setTime] = useState(new Date())
+    const formattedTime = time.toLocaleTimeString('en-US', {timeZone: timezone})
+    useEffect(() => {
+        const timer = setInterval(()=> setTime(new Date()))
+    }, 1000)
+ 
+
 
     return (
         <div className="DestinationDetails">
@@ -99,7 +108,10 @@ const DestinationDetails = () => {
                     </div>
                     <div className="info-wrap">
                         <div className="info-heading">
+                            <div className="cityTime">
                             <h1>{destination.destination}</h1>
+                            <h1 className="time">{formattedTime}</h1>
+                            </div>
                             <p><i>{destination.description}</i></p>
                         </div>
                         <div className="info-data-weather">
@@ -113,6 +125,7 @@ const DestinationDetails = () => {
                                 <h5>Best Season to go:</h5>
                                 <div><p>😊 {destination.bestseason}</p></div>
                             </div>
+
                             <div className="weather-price">
                                 <h5>Current Weather Forecast</h5>
                                 {weather === null
