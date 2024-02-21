@@ -8,6 +8,8 @@ const api = {
     base: 'https://api.openweathermap.org/data/2.5/'
 };
 
+
+
 const DestinationDetails = () => {
 
     const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
@@ -80,6 +82,12 @@ const DestinationDetails = () => {
         size: 80,
         animate: true
     }
+    const snow = {
+        icon: 'SNOW',
+        size: 80,
+        animate: true
+    }
+
 
     return (
         <div className="DestinationDetails">
@@ -145,6 +153,22 @@ const DestinationDetails = () => {
                                                 icon={lightRain.icon}
                                                 size={lightRain.size}
                                                 animate={lightRain.animate} />}
+                                        {weather.weather[0].description === "moderate rain"
+                                            && <ReactAnimatedWeather
+                                                icon={lightRain.icon}
+                                                size={lightRain.size}
+                                                animate={lightRain.animate} />}
+                                        {weather.weather[0].description === "thunderstorm with light rain"
+                                            && <ReactAnimatedWeather
+                                                icon={lightRain.icon}
+                                                size={lightRain.size}
+                                                animate={lightRain.animate} />}
+                                        {weather.weather[0].description === "snow"
+                                            && <ReactAnimatedWeather
+                                                icon={snow.icon}
+                                                size={snow.size}
+                                                animate={snow.animate} />}
+                                      
                                         <h1>{Math.round(weather.main.temp)} ºC</h1>
                                     </div>
                                     )}
