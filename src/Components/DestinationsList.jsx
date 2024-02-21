@@ -2,15 +2,19 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LeafletMap from "./LeafletMap";
 
-
-const DestinationsList = ({ destinations, filterDestinations, newDestList }) => {
+const DestinationsList = ({
+  destinations,
+  filterDestinations,
+  newDestList,
+}) => {
   let newList = JSON.parse(localStorage.getItem("favorites"));
 
   const [favorites, setFavorites] = useState(newList != null ? newList : []);
 
-
   const addToFavorites = (destination) => {
-    if (favorites.findIndex((favorite) => favorite.id === destination.id) == -1) {
+    if (
+      favorites.findIndex((favorite) => favorite.id === destination.id) == -1
+    ) {
       console.log("adding...");
 
       const newStateData = [...favorites, destination];
@@ -27,17 +31,16 @@ const DestinationsList = ({ destinations, filterDestinations, newDestList }) => 
     }
   };
 
-
-
   return (
     <>
       <h2 className="title">Plan your dream vacation with WanderWorld!</h2>
       <br />
-      <div className="filter">
+
       <h4>Filter</h4>
-      <select className="continents" onChange={filterDestinations}>
-        <option value="DEFAULT" >Select Continent/Country</option>
-        <option value="all" >All destinations</option>
+
+      <select className="filter" onChange={filterDestinations}>
+        <option value="DEFAULT">Select Continent/Country</option>
+        <option value="all">All destinations</option>
         <option value="North America">North America</option>
         <option value="South America">South America</option>
         <option value="Europe">Europe</option>
@@ -45,7 +48,7 @@ const DestinationsList = ({ destinations, filterDestinations, newDestList }) => 
         <option value="Asia">Asia</option>
         <option value="Australia">Australia</option>
       </select>
-      </div>
+
       <div className="DestinationsList">
         {!newDestList ? (
           <p>Loading...</p>
@@ -77,7 +80,7 @@ const DestinationsList = ({ destinations, filterDestinations, newDestList }) => 
                     }}
                   >
                     {favorites.findIndex((favorite) => favorite.id === obj.id) >
-                      -1 ? (
+                    -1 ? (
                       <svg
                         className="like-tag"
                         xmlns="http://www.w3.org/2000/svg"
@@ -96,13 +99,10 @@ const DestinationsList = ({ destinations, filterDestinations, newDestList }) => 
                     )}
                   </button>
                 </div>
-
               </div>
             );
           })
         )}
-
-
       </div>
       {newDestList === null ? (
         <p>Map is loading...</p>

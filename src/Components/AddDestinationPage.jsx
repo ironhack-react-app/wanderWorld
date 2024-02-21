@@ -3,18 +3,52 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AddDestinationPage = () => {
+
+  const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
+
   const [destination, setDestination] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
+  const [waitingForImageUrl, setWaitingForImageUrl] = useState(false);
+  //const [image, setImage] = useState("");
   const [warmestmonth, setWarmestmonth] = useState("");
   const [rainiestmonth, setRainiestmonth] = useState("");
   const [cheapestmonth, setCheapestmonth] = useState("");
   const [bestseason, setBestseason] = useState("");
   const [totalCost, setTotalCost] = useState("");
 
-  const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
+  
 
   const navigate = useNavigate();
+
+
+  const handleFileUpload = (e) => {
+    setWaitingForImageUrl(true);
+
+    //check if we receive the file path correctly
+    console.log("The file to be uploaded is: ", e.target.files[0]);
+
+    // create url including your personal Cloudinary Name
+    const url = `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME2}/upload`;
+    const dataToUpload = new FormData();
+    // properties needs to have those specific names!!!
+    dataToUpload.append("file", e.target.files[0]);
+    // VITE_UNSIGNED_UPLOAD_PRESET => name of the unsigned upload preset created in your Cloudinary account
+    dataToUpload.append("upload_preset", import.meta.env.VITE_UNSIGNED_UPLOAD_PRESET2);
+
+
+    axios.post(url, dataToUpload)
+        .then((response) => {
+            // to see the structure of the response
+            console.log('RESPONSE ', response.data);
+            // the image url is stored in the property secure_url
+            setImageUrl(response.data.secure_url);
+            setWaitingForImageUrl(false);
+        })
+        .catch((error) => {
+            console.error("Error uploading the file:", error);
+        });
+};
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +56,7 @@ const AddDestinationPage = () => {
     const newDestionation = {
       destination: destination,
       description: description,
-      image: image,
+      image: imageUrl,
       warmestmonth: warmestmonth,
       rainiestmonth: rainiestmonth,
       cheapestmonth: cheapestmonth,
@@ -65,9 +99,9 @@ const AddDestinationPage = () => {
         <label>
           Picture:
           <input
-            type="text"
+            type="file"
             name="image"
-            onChange={(e) => setImage(e.target.value)}
+            onChange={(e) => handleFileUpload(e)}
           />
         </label>
         <label>
@@ -119,3 +153,6 @@ const AddDestinationPage = () => {
 export default AddDestinationPage;
 
 
+// uzza9iw0
+
+// cloud name :  der4id1zq
