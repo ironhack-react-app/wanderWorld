@@ -88,13 +88,16 @@ const DestinationDetails = () => {
         animate: true
     }
 
-  
-    const timezone = "America/New_York"
+
+
     const [time, setTime] = useState(new Date())
-    const formattedTime = time.toLocaleTimeString('en-US', {timeZone: timezone})
+    const formattedTime = destination && time.toLocaleTimeString('en-US', {timeZone: destination.timezone, hour: "2-digit", minute:"2-digit"})
     useEffect(() => {
-        const timer = setInterval(()=> setTime(new Date()))
-    }, 1000)
+         if (destination) {
+            const timer = setInterval(()=> {setTime(new Date())},1000)
+            return () => {clearInterval(timer)};
+        }       
+    }, [destination])
  
 
 
@@ -109,10 +112,10 @@ const DestinationDetails = () => {
                     <div className="info-wrap">
                         <div className="info-heading">
                             <div className="cityTime">
-                            <h1>{destination.destination}</h1>
+                            <h1 className="name">{destination.destination}</h1>
                             <h1 className="time">{formattedTime}</h1>
                             </div>
-                            <p><i>{destination.description}</i></p>
+                            <p>{destination.description}</p>
                         </div>
                         <div className="info-data-weather">
                             <div className="statistics">

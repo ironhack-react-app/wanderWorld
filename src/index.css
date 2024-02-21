@@ -61,14 +61,15 @@
 .cityTime {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.cityTime h1{
+.name{
  margin-right: 50px;
 }
 .time {
   font-family: "Orbitron", sans-serif;
   color: rgb(255, 255, 255);
-  background-color: rgb(39, 91, 61);
+  background-color: rgb(39, 91, 61, 0.9);
   padding: 5px 30px;
   border-radius: 12px;
 }
