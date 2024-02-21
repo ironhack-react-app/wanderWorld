@@ -163,16 +163,15 @@
 }
 /* FILTER */ 
 .filter {
-margin-left: 100px;
-}
-.continents {
   margin-left: 100px;
-  padding: 10px;
-  background-color: #cfebe5;
-  border: none;
-  box-shadow: #acacac4d 0 2px 2px, #acacac4d 0 1px 3px 1px;
-  border-radius: 5px;
-}
+  }
+  .continents {
+    padding: 10px;
+    background-color: #cfebe5;
+    border: none;
+    box-shadow: #acacac4d 0 2px 2px, #acacac4d 0 1px 3px 1px;
+    border-radius: 5px;
+  }
 /* FOOTER */
 .Footer {
   background-color: rgba(39, 91, 61, 0.9);
