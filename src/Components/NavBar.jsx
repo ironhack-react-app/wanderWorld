@@ -1,12 +1,19 @@
 
 import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
+import { useLocation } from 'react-router-dom'
+
 
 const NavBar = ({ handleSearch }) => {
  
+  
   const handleChange = (event) => {
      handleSearch(event.target.value);
   };
+
+
+  const location = useLocation();
+  console.log(location.pathname);
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top">
@@ -43,10 +50,19 @@ const NavBar = ({ handleSearch }) => {
           </div>
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-              <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" onChange={handleChange} />
+              {
+                 location.pathname === "/" ? (
+
+                  <li className="nav-item">
+                  <input className="form-control me-2" type="search" 
+                  placeholder="Search..."
+                   aria-label="Search" onChange={handleChange} />
+                    
+                  </li>
+                 ) :('')
                 
-              </li>
+              }
+             
               <li className="nav-item">
                 <Link
                   to="/"
