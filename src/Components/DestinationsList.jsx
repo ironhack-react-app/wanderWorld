@@ -36,9 +36,9 @@ const DestinationsList = ({
       <h2 className="title">Plan your dream vacation with WanderWorld!</h2>
       <br />
 
-      <h4>Filter</h4>
+      <h4 className="filter">Filter</h4>
 
-      <select className="filter" onChange={filterDestinations}>
+      <select className="continents" onChange={filterDestinations}>
         <option value="DEFAULT">Select Continent/Country</option>
         <option value="all">All destinations</option>
         <option value="North America">North America</option>
