@@ -17,7 +17,6 @@ const AddDestinationPage = () => {
   const [bestseason, setBestseason] = useState("");
   const [totalCost, setTotalCost] = useState("");
 
-  
 
   const navigate = useNavigate();
 
@@ -25,23 +24,16 @@ const AddDestinationPage = () => {
   const handleFileUpload = (e) => {
     setWaitingForImageUrl(true);
 
-    //check if we receive the file path correctly
     console.log("The file to be uploaded is: ", e.target.files[0]);
-
-    // create url including your personal Cloudinary Name
     const url = `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME2}/upload`;
     const dataToUpload = new FormData();
-    // properties needs to have those specific names!!!
     dataToUpload.append("file", e.target.files[0]);
-    // VITE_UNSIGNED_UPLOAD_PRESET => name of the unsigned upload preset created in your Cloudinary account
     dataToUpload.append("upload_preset", import.meta.env.VITE_UNSIGNED_UPLOAD_PRESET2);
 
 
     axios.post(url, dataToUpload)
         .then((response) => {
-            // to see the structure of the response
             console.log('RESPONSE ', response.data);
-            // the image url is stored in the property secure_url
             setImageUrl(response.data.secure_url);
             setWaitingForImageUrl(false);
         })
@@ -144,15 +136,10 @@ const AddDestinationPage = () => {
             onChange={(e) => setTotalCost(e.target.value)}
           />
         </label>
-        <button type="submit">Create Destination</button>
+        <button type="submit"  disabled={waitingForImageUrl} >Create Destination</button>
       </form>
     </div>
   );
 };
 
 export default AddDestinationPage;
-
-
-// uzza9iw0
-
-// cloud name :  der4id1zq
