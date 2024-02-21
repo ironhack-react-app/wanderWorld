@@ -44,7 +44,8 @@ const NavBar = ({ handleSearch }) => {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <input type="text" onChange={handleChange} />
+              <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search" onChange={handleChange} />
+                
               </li>
               <li className="nav-item">
                 <Link
