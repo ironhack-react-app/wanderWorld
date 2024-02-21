@@ -88,7 +88,8 @@
     background: transparent;
     border: none;
   }
-
+ 
+  /* Search Bar */ 
 .form-control{
   height: 27px;
   width: 170px;
