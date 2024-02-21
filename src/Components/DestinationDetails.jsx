@@ -179,11 +179,21 @@ const DestinationDetails = () => {
                                                 icon={lightRain.icon}
                                                 size={lightRain.size}
                                                 animate={lightRain.animate} />}
+                                                 {weather.weather[0].description === "drizzle rain"
+                                            && <ReactAnimatedWeather
+                                                icon={lightRain.icon}
+                                                size={lightRain.size}
+                                                animate={lightRain.animate} />}
                                         {weather.weather[0].description === "snow"
                                             && <ReactAnimatedWeather
                                                 icon={snow.icon}
                                                 size={snow.size}
                                                 animate={snow.animate} />}
+                                                {weather.weather[0].description === "fog"
+                                            && <ReactAnimatedWeather
+                                                icon={mist.icon}
+                                                size={mist.size}
+                                                animate={mist.animate} />}
                                       
                                         <h1>{Math.round(weather.main.temp)} ºC</h1>
                                     </div>
