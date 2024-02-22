@@ -7,14 +7,16 @@ const DestinationsList = ({
   filterDestinations,
   newDestList,
 }) => {
+
   let newList = JSON.parse(localStorage.getItem("favorites"));
 
   const [favorites, setFavorites] = useState(newList != null ? newList : []);
 
   const addToFavorites = (destination) => {
-    if (
-      favorites.findIndex((favorite) => favorite.id === destination.id) == -1
-    ) {
+    if (favorites
+        .findIndex(
+            (favorite) => favorite.id === destination.id) == -1) 
+    {
       console.log("adding...");
 
       const newStateData = [...favorites, destination];
@@ -35,8 +37,7 @@ const DestinationsList = ({
     <>
       <h2 className="title">Plan your dream vacation with WanderWorld!</h2>
       <br />
-
-      <h4 className="filter">Filter</h4>
+      {/* <h4 className="filter">Filter</h4> */}
 
       <select className="continents" onChange={filterDestinations}>
         <option value="DEFAULT">Select Continent/Country</option>
@@ -50,12 +51,14 @@ const DestinationsList = ({
       </select>
 
       <div className="DestinationsList">
+      
         {!newDestList ? (
           <p>Loading...</p>
         ) : (
           newDestList.map((obj) => {
             return (
-              <div className="destination-card" key={obj.id}>
+              <div className="destination" key={obj.id}>
+              <div className="destination-card" >
                 <div>
                   <Link to={`/destinations/${obj.id}`}>
                     <div className="destination-title-container">
@@ -100,15 +103,13 @@ const DestinationsList = ({
                   </button>
                 </div>
               </div>
+              </div>  
             );
           })
         )}
+      
       </div>
-      {newDestList === null ? (
-        <p>Map is loading...</p>
-      ) : (
-        <LeafletMap destinations={newDestList} />
-      )}
+     
     </>
   );
 };

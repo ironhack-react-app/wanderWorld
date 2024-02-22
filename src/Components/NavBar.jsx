@@ -12,8 +12,7 @@ const NavBar = ({ handleSearch }) => {
   };
 
 
-  const location = useLocation();
-  //console.log(location.pathname);
+  const location = useLocation(); 
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top">

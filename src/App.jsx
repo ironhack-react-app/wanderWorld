@@ -15,9 +15,9 @@ import LeafletMap from './Components/LeafletMap';
 
 
 function App() {
+  const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
 
   const [destinations, setDestinations] = useState([]);
-  const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
   const [newDestList, setNewDestList] = useState([])
   const [query, setQuery] = useState("");
 
@@ -47,9 +47,10 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-      
-       //let searchResult = destinations.filter((dest) => dest.destination.toLowerCase().includes(query.toLowerCase()));
-      //setNewDestList(searchResult);
+       
+      // alternative way with using existing data
+      /* let searchResult = destinations.filter((dest) => dest.destination.toLowerCase().includes(query.toLowerCase()));
+      setNewDestList(searchResult); */
   }
 
   useEffect(() => {
@@ -60,9 +61,7 @@ function App() {
   const handleSearch = (query) => {
     setQuery(query)
 
-  }
-
-
+  } 
   const filterDestinations = (event) => {
     
     const continent = event.target.value;
@@ -81,13 +80,17 @@ function App() {
     
     <Routes>
       <Route path="/" element={<DestinationsList destinations={destinations} filterDestinations={filterDestinations} newDestList={newDestList}/>}/>
-      {/* <Route path="/destinations" element={<DestinationsList  filterDestinations={filterDestinations} newDestList={newDestList}/>}/> */}
       <Route path="/destinations/:destinationId" element={<DestinationDetails />}></Route>
       <Route path="/destinations/edit/:destinationId" element={ <EditDestinationPage /> } />
       <Route path="/destinations/create" element={ <AddDestinationPage /> } />
       <Route path="/destinations/favorites" element={ <FavoritesPage /> } />
 
     </Routes>
+    {newDestList === null ? (
+        <p>Map is loading...</p>
+      ) : (
+        <LeafletMap destinations={newDestList} />
+      )}
     <Footer />
     
     </>

@@ -31,18 +31,34 @@
     border-radius: 8px;
     background-color: var(--light-grey);
     box-shadow: #3c40434d 0 1px 2px,#3c404326 0 1px 3px 1px;
-    max-height: 520px;
+    max-height: 520px; 
     flex-direction: column;
-  
   }
 
+  @media (max-width: 992px) {
+    .DestinationsList {
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top: 60px;
+      margin-bottom: 5px;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .destination-card{
+      max-height: 420px;
+      max-width: 380px;
+    }
+    .item-img{
+      height: 300px; 
+      width: 380px;
+    }
+  }
+  
   .destination-title {
     color:rgb(39, 91, 61);
     font-weight: 400;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align:center;
-   
-    
+    text-align:center;  
   }
 
   .destination-description {
@@ -56,12 +72,10 @@
   .location-tag {
     width: 15px;
     height: 45px;
-
   }
   .like-tag{
     width: 45px;
     height: 20px;
-   
   }
 
   .destination-title-container{
@@ -69,8 +83,7 @@
     justify-content:center;
     align-items: center;
     padding-top: 10px;
-    gap: 7px;
-    
+    gap: 7px;  
   }
 
   .company-card-buttons-wrap{
@@ -79,21 +92,26 @@
     gap: 50px;
   }
   
+   /* Map */ 
+  .map-container {
+    display: flex;
+    justify-content: center;
+  }
+
   .leaflet-container {
     height: 600px;
-    width: 100%;
+    width: 90%;  
   }
   
   .leaflet-div-icon {
     background: transparent;
     border: none;
   }
- 
+  
   /* Search Bar */ 
-.form-control{
-  height: 27px;
-  width: 170px;
-  margin-top: 5px;
-  background-color:  #dff3ee;
- 
-}
+  .form-control{
+    height: 27px;
+    width: 170px;
+    margin-top: 5px;
+    background-color:  #dff3ee;
+  }
