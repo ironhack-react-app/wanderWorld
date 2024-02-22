@@ -1,8 +1,15 @@
-# React + Vite
+# README Project 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Description
+    This project is a simple web application that allows users to create, read, update and delete travelling destinations around the world.
 
-Currently, two official plugins are available:
+- Instructions
+    -> git clone
+    -> install dependencies (npm install)
+    -> In this project we are using environment variables. For having the full functionality of the application running 
+       it's necessary to create you own .env file with the personal keys from the following websites where creating an account is required: 
+            https://openweathermap.org/ (Being able to display the weather in every city)
+            https://cloudinary.com/ (Being ablo to upload and store pictures when editing destinations)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Demo
+    wander-world.netlify.app
