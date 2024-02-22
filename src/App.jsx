@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import './App.css'
 import NavBar from './Components/NavBar'
 import Footer from './Components/Footer';
@@ -10,9 +9,6 @@ import DestinationDetails from './Components/DestinationDetails';
 import EditDestinationPage from './Components/EditDestinationPage';
 import AddDestinationPage from './Components/AddDestinationPage';
 import FavoritesPage from './Components/FavoritesPage';
-import LeafletMap from './Components/LeafletMap';
-
-
 
 function App() {
   const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
@@ -36,7 +32,6 @@ function App() {
   }, []);
 
 
-  
   const fetchWithQuery = (query) => {
       
       axios
@@ -60,7 +55,6 @@ function App() {
 
   const handleSearch = (query) => {
     setQuery(query)
-
   } 
   const filterDestinations = (event) => {
     
@@ -86,13 +80,7 @@ function App() {
       <Route path="/destinations/favorites" element={ <FavoritesPage /> } />
 
     </Routes>
-    {newDestList === null ? (
-        <p>Map is loading...</p>
-      ) : (
-        <LeafletMap destinations={newDestList} />
-      )}
     <Footer />
-    
     </>
   )
 }

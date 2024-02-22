@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import LeafletMap from "./LeafletMap";
 
+
 const DestinationsList = ({
-  destinations,
   filterDestinations,
   newDestList,
 }) => {
@@ -109,6 +109,12 @@ const DestinationsList = ({
         )}
       
       </div>
+
+      {newDestList === null ? (
+        <p>Map is loading...</p>
+      ) : (
+        <LeafletMap destinations={newDestList} />
+      )}
      
     </>
   );

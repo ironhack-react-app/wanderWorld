@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const LeafletMap = ({ destinations }) => {
   const paris = [48.86314634052172, 2.2941632958970226];
   const [center, setCenter] = useState(paris);
-  const [zoom, setZoom] = useState(2);
+  const [zoom, setZoom] = useState(2); 
 
   return (
     <div className="map-container">
@@ -14,7 +14,7 @@ const LeafletMap = ({ destinations }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {destinations != null
+        {destinations != null 
           ? destinations.map((obj) => {
               if (obj.coordination) {
                 return (
@@ -36,3 +36,5 @@ const LeafletMap = ({ destinations }) => {
   );
 };
 export default LeafletMap;
+
+

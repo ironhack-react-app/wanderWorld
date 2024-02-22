@@ -3,14 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { useLocation } from 'react-router-dom'
 
-
 const NavBar = ({ handleSearch }) => {
- 
   
   const handleChange = (event) => {
      handleSearch(event.target.value);
   };
-
 
   const location = useLocation(); 
 
