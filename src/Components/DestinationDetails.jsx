@@ -91,14 +91,14 @@ const DestinationDetails = () => {
 
 
     const [time, setTime] = useState(new Date())
-    const formattedTime = destination && time.toLocaleTimeString('en-US', {timeZone: destination.timezone, hour: "2-digit", minute:"2-digit"})
+    const formattedTime = destination && time.toLocaleTimeString('en-US', { timeZone: destination.timezone, hour: "2-digit", minute: "2-digit" })
     useEffect(() => {
-         if (destination) {
-            const timer = setInterval(()=> {setTime(new Date())},1000)
-            return () => {clearInterval(timer)};
-        }       
+        if (destination) {
+            const timer = setInterval(() => { setTime(new Date()) }, 1000)
+            return () => { clearInterval(timer) };
+        }
     }, [destination])
- 
+
 
 
     return (
@@ -112,8 +112,8 @@ const DestinationDetails = () => {
                     <div className="info-wrap">
                         <div className="info-heading">
                             <div className="cityTime">
-                            <h1 className="name">{destination.destination}</h1>
-                            <h1 className="time">{formattedTime}</h1>
+                                <h1 className="name">{destination.destination}</h1>
+                                <h1 className="time">{formattedTime}</h1>
                             </div>
                             <p>{destination.description}</p>
                         </div>
@@ -134,67 +134,37 @@ const DestinationDetails = () => {
                                 {weather === null
                                     ? <p>Loading...</p>
                                     : (<div className="weather">
-                                        {weather.weather[0].description === "broken clouds"
+                                        {weather.weather[0].main === "Clouds"
                                             && <ReactAnimatedWeather
                                                 icon={brokenClouds.icon}
                                                 size={brokenClouds.size}
                                                 animate={brokenClouds.animate} />}
-                                        {weather.weather[0].description === "overcast clouds"
-                                            && <ReactAnimatedWeather
-                                                icon={brokenClouds.icon}
-                                                size={brokenClouds.size}
-                                                animate={brokenClouds.animate} />}
-                                        {weather.weather[0].description === "few clouds"
-                                            && <ReactAnimatedWeather
-                                                icon={brokenClouds.icon}
-                                                size={brokenClouds.size}
-                                                animate={brokenClouds.animate} />}
-                                        {weather.weather[0].description === "clear sky"
+                                        {weather.weather[0].main === "Clear"
                                             && <ReactAnimatedWeather
                                                 icon={clearSky.icon}
                                                 size={clearSky.size}
                                                 animate={clearSky.animate} />}
-                                        {weather.weather[0].description === "scattered clouds"
-                                            && <ReactAnimatedWeather
-                                                icon={scatteredClouds.icon}
-                                                size={scatteredClouds.size}
-                                                animate={scatteredClouds.animate} />}
-                                        {weather.weather[0].description === "mist"
+                                        {weather.weather[0].main === "Mist"
                                             && <ReactAnimatedWeather
                                                 icon={mist.icon}
                                                 size={mist.size}
                                                 animate={mist.animate} />}
-                                        {weather.weather[0].description === "light rain"
+                                        {weather.weather[0].main === "Rain"
                                             && <ReactAnimatedWeather
                                                 icon={lightRain.icon}
                                                 size={lightRain.size}
                                                 animate={lightRain.animate} />}
-                                        {weather.weather[0].description === "moderate rain"
+                                        {weather.weather[0].main === "Drizzle"
                                             && <ReactAnimatedWeather
                                                 icon={lightRain.icon}
                                                 size={lightRain.size}
                                                 animate={lightRain.animate} />}
-                                        {weather.weather[0].description === "thunderstorm with light rain"
-                                            && <ReactAnimatedWeather
-                                                icon={lightRain.icon}
-                                                size={lightRain.size}
-                                                animate={lightRain.animate} />}
-                                                 {weather.weather[0].description === "drizzle rain"
-                                            && <ReactAnimatedWeather
-                                                icon={lightRain.icon}
-                                                size={lightRain.size}
-                                                animate={lightRain.animate} />}
-                                        {weather.weather[0].description === "snow"
+                                        {weather.weather[0].main === "Snow"
                                             && <ReactAnimatedWeather
                                                 icon={snow.icon}
                                                 size={snow.size}
                                                 animate={snow.animate} />}
-                                                {weather.weather[0].description === "fog"
-                                            && <ReactAnimatedWeather
-                                                icon={mist.icon}
-                                                size={mist.size}
-                                                animate={mist.animate} />}
-                                      
+
                                         <h1>{Math.round(weather.main.temp)} ºC</h1>
                                     </div>
                                     )}

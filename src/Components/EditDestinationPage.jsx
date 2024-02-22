@@ -8,7 +8,7 @@ const EditDestinationPage = () => {
 
     const [destination, setDestination] = useState("")
     const [description, setDescription] = useState("")
-    // const [image, setImage] = useState("")
+    const [image, setImage] = useState("")
     const [imageUrl, setImageUrl] = useState(null);
     const [waitingForImageUrl, setWaitingForImageUrl] = useState(false);
     const [warmestmonth, setWarmestmonth] = useState("")
@@ -25,7 +25,7 @@ const EditDestinationPage = () => {
             .then((response) => {
                 setDestination(response.data.destination)
                 setDescription(response.data.description)
-                // setImage(response.data.image)
+                setImage(response.data.image)
                 setWarmestmonth(response.data.warmestmonth)
                 setRainiestmonth(response.data.rainiestmonth)
                 setCheapestmonth(response.data.cheapestmonth)
@@ -60,11 +60,11 @@ const EditDestinationPage = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
-
+        const updatedImageUrl = imageUrl ? imageUrl : image;
         const newDetails = {
             destination: destination,
             description: description,
-            image: imageUrl,
+            image: updatedImageUrl,
             warmestmonth: warmestmonth,
             rainiestmonth: rainiestmonth,
             cheapestmonth: cheapestmonth,
@@ -133,7 +133,7 @@ const EditDestinationPage = () => {
                     <input
                         type="text"
                         name="cheapestmonth"
-                        value={rainiestmonth}
+                        value={cheapestmonth}
                         onChange={(e) => setCheapestmonth(e.target.value)}
                     />
                 </label>
