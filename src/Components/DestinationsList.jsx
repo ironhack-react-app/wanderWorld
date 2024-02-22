@@ -107,7 +107,7 @@ const DestinationsList = ({
       {newDestList === null ? (
         <p>Map is loading...</p>
       ) : (
-        <LeafletMap destinations={destinations} />
+        <LeafletMap destinations={newDestList} />
       )}
     </>
   );
