@@ -17,18 +17,21 @@ function App() {
   const [newDestList, setNewDestList] = useState([])
   const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    
+
+  const fetchDestinations = () => {
     axios
       .get(API_URL + "/destinations")
       .then((response) => {
         setDestinations(response.data);
         setNewDestList(response.data)
-       })
+      })
       .catch((e) => {
         console.log(e);
       });
- 
+  }
+
+  useEffect(() => {
+    fetchDestinations(); 
   }, []);
 
 
@@ -70,11 +73,12 @@ function App() {
 
   return (
     <>
+
     <NavBar handleSearch={handleSearch}/>
     
     <Routes>
       <Route path="/" element={<DestinationsList destinations={destinations} filterDestinations={filterDestinations} newDestList={newDestList}/>}/>
-      <Route path="/destinations/:destinationId" element={<DestinationDetails />}></Route>
+      <Route path="/destinations/:destinationId" element={<DestinationDetails fetchDestinations={fetchDestinations}/>}></Route>
       <Route path="/destinations/edit/:destinationId" element={ <EditDestinationPage /> } />
       <Route path="/destinations/create" element={ <AddDestinationPage /> } />
       <Route path="/destinations/favorites" element={ <FavoritesPage /> } />

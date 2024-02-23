@@ -10,7 +10,7 @@ const api = {
 
 
 
-const DestinationDetails = () => {
+const DestinationDetails = ({fetchDestinations}) => {
 
     const API_URL = import.meta.env.VITE_JSON_SERVER_API_URL;
 
@@ -50,8 +50,9 @@ const DestinationDetails = () => {
     const deleteProject = () => {
         axios.delete(API_URL + '/destinations/' + destinationId)
             .then((response) => {
-                window.location.href="/";
-           
+                fetchDestinations()
+                navigate("/")
+
             })
             .catch((e) => {
                 console.log(e)
