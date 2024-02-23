@@ -51,6 +51,8 @@ const DestinationDetails = () => {
         axios.delete(API_URL + '/destinations/' + destinationId)
             .then((response) => {
                 navigate("/")
+                window.location.reload() 
+           
             })
             .catch((e) => {
                 console.log(e)
