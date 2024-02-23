@@ -50,8 +50,7 @@ const DestinationDetails = () => {
     const deleteProject = () => {
         axios.delete(API_URL + '/destinations/' + destinationId)
             .then((response) => {
-                navigate("/")
-                window.location.reload() 
+                window.location.href="/";
            
             })
             .catch((e) => {
